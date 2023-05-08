@@ -136,7 +136,7 @@ public class AES {
         }
         else {
             for (int i = 0; i < binaryA.length(); i++) {
-                if (binaryA.charAt(i) == binaryB.charAt(i))
+                if (binaryA.charAt(i) == '1' && binaryB.charAt(i)== '1')
                     result.append("1");
                 else
                     result.append("0");
@@ -492,7 +492,7 @@ public class AES {
     
     // Encrypts a 128-bit plaintext block using the key schedule 
     public static String encryptBlock(String plainBinaryBlockString, String[] keySchedule) {
-        System.out.printf("Input binary block: %s\n", plainBinaryBlockString);
+        System.out.printf("\tInput binary block: %s\n", plainBinaryBlockString);
         
         StringBuilder binaryBlock = new StringBuilder();
         
@@ -541,7 +541,7 @@ public class AES {
         // Encrypt each plaintext binary block
         String[] cipherBinaryBlocks = new String[plainBinaryBlocks.length];
         for (int i = 0; i < plainBinaryBlocks.length; i++) {
-            System.out.printf("Encrypting block %d\n", i+1);
+            System.out.printf("Encrypting block %d:\n", i+1);
             cipherBinaryBlocks[i] = encryptBlock(plainBinaryBlocks[i], keySchedule);
         }
 
@@ -654,7 +654,7 @@ public class AES {
     
     // Decrypts a 128-bit ciphertext block using the key schedule 
     public static String decryptBlock(String cipherBinaryBlockString, String[] keySchedule) {
-        System.out.printf("Input binary block: %s\n", cipherBinaryBlockString);
+        System.out.printf("\tInput binary block: %s\n", cipherBinaryBlockString);
         
         StringBuilder binaryBlock = new StringBuilder(cipherBinaryBlockString);
         
@@ -703,13 +703,13 @@ public class AES {
         // Decrypt each ciphertext binary block
         String[] plainBinaryBlocks = new String[cipherBinaryBlocks.length];
         for (int i = 0; i < cipherBinaryBlocks.length; i++) {
-            System.out.printf("Decrypting block %d\n", i+1);
+            System.out.printf("Decrypting block %d:\n", i+1);
             plainBinaryBlocks[i] = decryptBlock(cipherBinaryBlocks[i], keySchedule);
         }
 
         // Put plaintext binary blocks together
         String plainBinary = stringArrayToString(plainBinaryBlocks);
-        System.out.printf("\nPlaintext binary with padding: %s\n", cipherBinary);
+        System.out.printf("\nPlaintext binary with padding: %s\n", plainBinary);
         
         // Remove padding
         plainBinary = removePad(plainBinary);
@@ -724,7 +724,7 @@ public class AES {
         System.out.println("AES implementation demonstration: \n");
         
 //        String plaintext = "Do you want to know a secret?";
-        String plaintext = "Hello World!";
+        String plaintext = "Hello World! It's a nice day.";
         System.out.printf("Plaintext: %s\n\n", plaintext);
         
         String key128 = generateKey(128);
@@ -746,6 +746,3 @@ public class AES {
         
     }
 }
-
-// if somehting doesn't work in the end, it is probably becuase I forgot the block 
-// is arranged in column-major order in the beginning
