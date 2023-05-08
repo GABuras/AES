@@ -367,7 +367,7 @@ public class AES {
         }
     }
     
-    // Swap bytes in a 129-bit binary string with the corresponding bytes in the subsitution table
+    // Swap bytes in a 128-bit binary string with the corresponding bytes in the subsitution table
     public static String substitute128(String binary128, String[] sBox) {
         String[] bytes = binaryToBytes(binary128);
          if (bytes.length != 16)
@@ -723,7 +723,6 @@ public class AES {
     public static void main(String[] args) {
         System.out.println("AES implementation demonstration: \n");
         
-//        String plaintext = "Do you want to know a secret?";
         String plaintext = "Hello World! It's a nice day.";
         System.out.printf("Plaintext: %s\n\n", plaintext);
         
